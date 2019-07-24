@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>S3 Pre-Signed URL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="content">
+        <input id="input" type="file" onchange="inputHandler(this)"><button id="btnSubmit"
+            onclick="buttonHandler(this)">Submit</button>
+        <hr>
+        <div class="progressBarWrapper">
+            <div id="progressBar" class="progressBar" style="width: 0%">0%</div>
+        </div>
+        <div id="resultDiv">
+            <hr>
+            <a>Link to file</a>
+        </div>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="../node_modules/aws-sdk/dist/aws-sdk.min.js"></script>
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

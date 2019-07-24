@@ -1,0 +1,23 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "My playground. I made it. It's mine.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuiAzzi/Playground.git"
+  },
+  "author": "Guilherme Azzi Annunciato",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuiAzzi/Playground/issues"
+  },
+  "homepage": "https://github.com/GuiAzzi/Playground#readme",
+  "dependencies": {
+    "aws-sdk": "^2.498.0",
+    "axios": "^0.19.0"
+  }
+}
