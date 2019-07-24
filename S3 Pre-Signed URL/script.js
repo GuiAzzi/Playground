@@ -19,7 +19,7 @@ function inputHandler(input) {
         console.log('loaded');
         console.log(file);
     }
-    file.readAsText(input.files[0]);
+    file.readAsArrayBuffer(input.files[0]);
 }
 
 // Updates progress bar when uploading
