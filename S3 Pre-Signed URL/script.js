@@ -1,12 +1,16 @@
 // AWS account access
 if (config)
     AWS.config = {accessKeyId: config.accessKeyId, secretAccessKey: config.secretAccessKey, region: config.region};
+
 const s3 = new AWS.S3;
+const bucket = 'mee-assets'
+const progressBarEl = document.getElementById('progressBar');
+const fileLink = document.querySelector('#resultDiv a');
 
 let fileName = "";
 let mimeType = "";
 let file;
-let progressBarEl = document.getElementById('progressBar');
+
 
 // Function to be executed when a file is inserted
 function inputHandler(input) {
@@ -33,7 +37,7 @@ function buttonHandler(btn) {
     btn.disabled = true
     let params = {
         // Bucket name
-        Bucket: 'mee-assets',
+        Bucket: bucket,
         // Path and file name in bucket
         Key: fileName,
         // MIME Type
@@ -50,15 +54,18 @@ function buttonHandler(btn) {
         else {
             console.log(url);
             // Uploads object using the pre-signed url
-            axios.put(url, file.result, {headers: {'Content-Type': mimeType}, maxContentLength: 52428890, onUploadProgress: (progress) => progressBar(progress)}).catch((err) => {
+            axios.put(url, file.result, {headers: {'Content-Type': mimeType}, maxContentLength: 52428890, onUploadProgress: (progress) => progressBar(progress)})
+            .catch((err) => {
                 console.log(err.message);
                 document.getElementById('btnSubmit').disabled = false;
+                fileLink.innerHTML = "Error";
             }).then((result) => {
                 console.log(result.status);
                 console.log(result);
                 document.getElementById('btnSubmit').disabled = false;
-                // document.getElementById('resultDiv').style.display = 'block'
-                // document.querySelector('#resultDiv a').href = result.data.Location
+                document.getElementById('resultDiv').style.display = 'block';
+                fileLink.innerHTML = "Link to file"
+                fileLink.href = "https://mee-assets.s3.amazonaws.com/" + encodeURIComponent(params.Key);
             })
         }
     })
