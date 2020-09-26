@@ -45,6 +45,8 @@ function buttonHandler(btn) {
         // Expires: 4
     }
 
+    console.log("Params: ", params)
+
     // Gets pre-signed s3 url, allowing to put an object
     s3.getSignedUrl('putObject', params, (err, url) => {
         if (err) {
@@ -52,7 +54,7 @@ function buttonHandler(btn) {
             console.log(err);
         }
         else {
-            console.log(url);
+            console.log("Pre-Signed URL: ", url);
             // Uploads object using the pre-signed url
             axios.put(url, file.result, {headers: {'Content-Type': mimeType}, maxContentLength: 52428890, onUploadProgress: (progress) => progressBar(progress)})
             .catch((err) => {
@@ -60,7 +62,6 @@ function buttonHandler(btn) {
                 document.getElementById('btnSubmit').disabled = false;
                 fileLink.innerHTML = "Error";
             }).then((result) => {
-                console.log(result.status);
                 console.log(result);
                 document.getElementById('btnSubmit').disabled = false;
                 document.getElementById('resultDiv').style.display = 'block';
