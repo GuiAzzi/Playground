@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/GuiAzzi/Playground#readme",
   "dependencies": {
-    "aws-sdk": "^2.498.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.19.0"
   }
 }
